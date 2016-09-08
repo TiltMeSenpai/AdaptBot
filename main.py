@@ -14,6 +14,7 @@ async def on_ready():
     print(client.user.id)
     print('======')
     skill_adapter.load_skills()
+    await skill_adapter.load_skills()
 
 @client.event
 async def on_message(message):
@@ -28,9 +29,11 @@ async def on_message(message):
         else:
             intent = intents[0]
             skill = getattr(skill_adapter, intent.pop("intent_type"))
+            skill = skill_adapter.skills[intent.pop("intent_type")]
             intent.pop("target")
             intent.pop("confidence")
             await client.send_message(message.channel, str(skill.parse(**intent)))
+            await client.send_message(message.channel, str(await skill.parse(message, **intent)))
 
 def main():
     client.run(secrets.token)
