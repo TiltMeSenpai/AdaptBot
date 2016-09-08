@@ -3,3 +3,5 @@ __pycache__/
 *.py[cod]
 dev/
 secrets.py
+.env
+*.pyc

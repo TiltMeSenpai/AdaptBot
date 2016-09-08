@@ -1,7 +1,7 @@
 import discord
 import asyncio
-import secrets
 import skill_adapter
+import os
 
 client = discord.Client()
 
@@ -13,7 +13,6 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('======')
-    skill_adapter.load_skills()
     await skill_adapter.load_skills()
 
 @client.event
@@ -28,15 +27,13 @@ async def on_message(message):
             await client.send_message(message.channel, "I'm sorry, I couldn't understand you")
         else:
             intent = intents[0]
-            skill = getattr(skill_adapter, intent.pop("intent_type"))
             skill = skill_adapter.skills[intent.pop("intent_type")]
             intent.pop("target")
             intent.pop("confidence")
-            await client.send_message(message.channel, str(skill.parse(**intent)))
             await client.send_message(message.channel, str(await skill.parse(message, **intent)))
 
 def main():
-    client.run(secrets.token)
+    client.run(os.environ["discord"])
 
 if __name__=='__main__':
     main()
