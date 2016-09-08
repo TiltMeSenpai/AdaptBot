@@ -33,7 +33,7 @@ async def on_message(message):
             await client.send_message(message.channel, str(await skill.parse(message, **intent)))
 
 def main():
-    client.run(os.environ["discord"])
+    client.run(os.environ["DISCORD_KEY"])
 
 if __name__=='__main__':
     main()

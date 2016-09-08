@@ -9,10 +9,10 @@ class RoleSkill(Skill):
         if lane == "mid": lane = "middle"
         if best in ["best", "top"]:
             url = "http://api.champion.gg/stats/role/{}/bestPerformance?api_key={}&page=1&limit={}".format(
-                lane, os.environ["champion_gg"], number)
+                lane, os.environ["CHAMPION_GG_KEY"], number)
         else:
             url = "http://api.champion.gg/stats/role/{}/worstPerformance?api_key={}&page=1&limit={}".format(
-                    lane, os.environ["champion_gg"], number)
+                    lane, os.environ["CHAMPION_GG_KEY"], number)
         champs = requests.get(url).json()
         data = [["#", "Name", "Win Percent", "Play Percent", "Ban Rate"]]
         for i, champ in enumerate(champs["data"]):
