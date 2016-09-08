@@ -16,7 +16,6 @@ def load_skillset(filename, skillset):
     for regex in skillset["regexes"]:
         engine.register_regex_entity(regex, domain = skillset["domain"])
     for term, words in skillset["vocab"].items():
-        print(term, words)
         for word in words:
             engine.register_entity(word, term, domain = skillset["domain"])
     for skill, syntax in skillset["skills"].items():

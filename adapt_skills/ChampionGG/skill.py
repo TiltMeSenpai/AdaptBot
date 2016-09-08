@@ -13,10 +13,9 @@ class RoleSkill(Skill):
         else:
             url = "http://api.champion.gg/stats/role/{}/worstPerformance?api_key={}&page=1&limit={}".format(
                     lane, os.environ["champion_gg"], number)
-        print(url)
         champs = requests.get(url).json()
         data = [["#", "Name", "Win Percent", "Play Percent", "Ban Rate"]]
         for i, champ in enumerate(champs["data"]):
-            data.append([i, champ["name"], champ["general"]["winPercent"],
+            data.append([i+1, champ["name"], champ["general"]["winPercent"],
                 champ["general"]["playPercent"], champ["general"]["banRate"]])
-        return tabulate(data, headers="firstrow")
+        return "According to Champion.gg:\n```"+tabulate(data, headers="firstrow")+"```"
