@@ -1,0 +1,3 @@
+[submodule "adapt_skills/ChampionGG"]
+	path = adapt_skills/ChampionGG
+	url = git@github.com:jano017/ChampionGG-Skill.git
