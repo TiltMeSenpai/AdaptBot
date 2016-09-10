@@ -2,6 +2,7 @@ from .. import Skill
 from tabulate import tabulate
 import requests
 import os
+import asyncio
 
 class RoleSkill(Skill):
     async def parse(self, message, lane, best="best", number=5, question=None):
@@ -13,7 +14,8 @@ class RoleSkill(Skill):
         else:
             url = "http://api.champion.gg/stats/role/{}/worstPerformance?api_key={}&page=1&limit={}".format(
                     lane, os.environ["CHAMPION_GG_KEY"], number)
-        champs = requests.get(url).json()
+        champs = await asyncio.get_event_loop().run_in_executor(None, requests.get, url)
+        champs = champs.json()
         data = [["#", "Name", "Win Percent", "Play Percent", "Ban Rate"]]
         for i, champ in enumerate(champs["data"]):
             data.append([i+1, champ["name"], champ["general"]["winPercent"],
