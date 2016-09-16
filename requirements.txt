@@ -3,3 +3,6 @@ git+https://github.com/Rapptz/discord.py#egg=discord.py[voice]
 requests
 tabulate
 cffi
+aiohttp
+oauthlib
+requests_oauthlib
