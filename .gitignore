@@ -7,3 +7,5 @@ dev/
 secrets.py
 .env
 *.pyc
+*/node_modules/*
+*/lib/*
