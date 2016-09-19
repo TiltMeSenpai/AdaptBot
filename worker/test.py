@@ -1,6 +1,5 @@
 import discord
 import asyncio
-import secrets
 import skill_adapter
 from datetime import datetime
 import sys
