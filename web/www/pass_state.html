@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AdaptBot</title>
+  </head>
+  <body>
+    <script text='text/javascript'>
+      console.log("Posting ")
+      window.opener.postMessage ({{'session': '{session}', 'hmac_key': '{hmac_key}'}}, "*")
+      window.close()
+    </script>
+  </body>
+</html>
