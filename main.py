@@ -18,9 +18,12 @@ async def on_ready():
 @client.event
 async def on_message(message):
     print(str(message.content))
-    if message.content.startswith(uid):
+    if (client.user in message.mentions or message.channel.is_private) and client.user != message.author:
         phrase = message.content.lstrip(uid)
-        intents = sorted(skill_adapter.engine.determine_intent(phrase), key = lambda x: x["confidence"])
+        print(list(skill_adapter.engine.determine_intent(phrase)))
+        intents = sorted(
+                skill_adapter.engine.determine_intent(phrase),
+                key = lambda x: x["confidence"])
         print("Message recieved. Responding")
         print(intents)
         if len(intents) < 1:
