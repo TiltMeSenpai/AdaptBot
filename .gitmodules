@@ -1,3 +1,6 @@
 [submodule "adapt_skills/ChampionGG"]
 	path = adapt_skills/ChampionGG
 	url = https://github.com/jano017/ChampionGG-Skill.git
+[submodule "adapt_skills/alpha_skill"]
+	path = adapt_skills/alpha_skill
+	url = https://github.com/jano017/WolframAlpha-Skill.git
